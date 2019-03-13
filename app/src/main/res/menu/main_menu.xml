@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Settings" android:id="@+id/settings"></item>
-    <item android:title="Help" android:id="@+id/help"></item>
     <item android:title="Float" android:id="@+id/floatWindow"></item>
-    <item android:title="Exit" android:id="@+id/exit"></item>
     <item android:title="Go to YouTube" android:id="@+id/youtube"></item>
     <item android:title="Go to Vimeo" android:id="@+id/vimeo"></item>
+    <item android:title="Settings" android:id="@+id/settings"></item>
+    <item android:title="Help" android:id="@+id/help"></item>
+    <item android:title="Exit" android:id="@+id/exit"></item>
 
 
 

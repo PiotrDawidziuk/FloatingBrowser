@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.exit:
 
                 builder = new AlertDialog.Builder(this);
-                builder.setMessage("Write your message here.");
+                builder.setTitle("Do you want to exit?");
+                builder.setMessage("Remember: the music will stop! If you want it to continue, choose FLOAT.");
                 builder.setCancelable(true);
 
                 builder.setPositiveButton(
