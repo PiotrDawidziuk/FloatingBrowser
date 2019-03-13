@@ -13,10 +13,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void pictureInPicture(View view){
-        enterPictureInPictureMode();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -57,16 +53,13 @@ public class MainActivity extends AppCompatActivity {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
 
         TextView textView = findViewById(R.id.textView);
-        Button button = findViewById(R.id.button);
 
         if (isInPictureInPictureMode){
             //going to picture in picture
-            button.setVisibility(View.INVISIBLE);
             getSupportActionBar().hide();
             textView.setText("3,45$");
         }else{
             //going out from pip
-            button.setVisibility(View.VISIBLE);
             getSupportActionBar().show();
             textView.setText("The price is: 3,45$");
         }
