@@ -1,5 +1,6 @@
 package pl.piotrdawidziuk.floatingbrowser;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -66,10 +67,36 @@ public class MainActivity extends AppCompatActivity {
                 enterPictureInPictureMode();
                 return true;
             case R.id.exit:
-                Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                homeIntent.addCategory( Intent.CATEGORY_HOME );
-                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(homeIntent);
+
+                builder = new AlertDialog.Builder(this);
+                builder.setMessage("Write your message here.");
+                builder.setCancelable(true);
+
+                builder.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                                homeIntent.addCategory( Intent.CATEGORY_HOME );
+                                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(homeIntent);
+
+                                dialog.cancel();
+                            }
+                        });
+
+                builder.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder.create();
+                alert11.show();
+
                 return true;
             case R.id.vimeo:
                 setUrlToWebView("https://vimeo.com/");
