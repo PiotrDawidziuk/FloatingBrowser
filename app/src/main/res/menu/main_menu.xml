@@ -6,7 +6,7 @@
     <item android:title="Float" android:id="@+id/floatWindow"></item>
     <item android:title="Exit" android:id="@+id/exit"></item>
     <item android:title="Go to YouTube" android:id="@+id/youtube"></item>
-    <item android:title="Go to Dailymotion" android:id="@+id/dailymotion"></item>
+    <item android:title="Go to Vimeo" android:id="@+id/vimeo"></item>
 
 
 

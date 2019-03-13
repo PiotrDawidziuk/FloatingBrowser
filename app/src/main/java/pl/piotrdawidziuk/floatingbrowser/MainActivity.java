@@ -16,6 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     WebView webView;
 
+    public void setUrlToWebview(String s){
+        webView.loadUrl(s);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -54,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 homeIntent.addCategory( Intent.CATEGORY_HOME );
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(homeIntent);
+                return true;
+            case R.id.vimeo:
+                setUrlToWebview("https://vimeo.com/");
+                return true;
+            case R.id.youtube:
+                setUrlToWebview("https://www.youtube.com/");
                 return true;
 
             default:
