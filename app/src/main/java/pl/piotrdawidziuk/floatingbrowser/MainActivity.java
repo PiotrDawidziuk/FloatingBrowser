@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,11 +16,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     WebView webView;
-    String url = "";
     AlertDialog.Builder builder;
     AlertDialog dialog;
     public void setUrlToWebView(String s){
-        url=s;
+        webView.loadUrl(s);
     }
 
     @Override
@@ -93,10 +93,7 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient());
-
-        url = "https://www.youtube.com/";
-
-        webView.loadUrl(url);
+        setUrlToWebView("https://www.youtube.com/");
     }
 
     @Override
