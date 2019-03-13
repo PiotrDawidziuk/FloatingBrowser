@@ -6,9 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,22 +45,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        WebView webView = findViewById(R.id.webView);
+
+        webView.getSettings().setJavaScriptEnabled(true);
+
+        webView.setWebViewClient(new WebViewClient());
+
+        webView.loadUrl("https://www.youtube.com/");
     }
 
     @Override
     public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
 
-        TextView textView = findViewById(R.id.textView);
 
         if (isInPictureInPictureMode){
             //going to picture in picture
             getSupportActionBar().hide();
-            textView.setText("3,45$");
         }else{
             //going out from pip
             getSupportActionBar().show();
-            textView.setText("The price is: 3,45$");
         }
 
     }
