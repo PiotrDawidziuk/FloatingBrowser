@@ -1,7 +1,9 @@
 package pl.piotrdawidziuk.floatingbrowser;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,6 +13,8 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    WebView webView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -28,11 +32,28 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.help:
-                Toast.makeText(this, "Help selected", Toast.LENGTH_SHORT).show();
+                // setup the alert builder
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Need help?");
+                builder.setMessage("This application is not finished and I am still updating it! " +
+                        "If you want to know more visit my Github at https://github.com/PiotrDawidziuk :)");
+
+                // add a button
+                builder.setPositiveButton("OK", null);
+
+                // create and show the alert dialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return true;
             case R.id.floatWindow:
                 Toast.makeText(this, "Float window selected", Toast.LENGTH_SHORT).show();
                 enterPictureInPictureMode();
+                return true;
+            case R.id.exit:
+                Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                homeIntent.addCategory( Intent.CATEGORY_HOME );
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
                 return true;
 
             default:
@@ -46,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        WebView webView = findViewById(R.id.webView);
+        webView = findViewById(R.id.webView);
 
         webView.getSettings().setJavaScriptEnabled(true);
 
