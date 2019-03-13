@@ -15,9 +15,11 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     WebView webView;
-
-    public void setUrlToWebview(String s){
-        webView.loadUrl(s);
+    String url = "";
+    AlertDialog.Builder builder;
+    AlertDialog dialog;
+    public void setUrlToWebView(String s){
+        url=s;
     }
 
     @Override
@@ -33,11 +35,21 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.settings:
-                Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT).show();
+                // setup the alert builder
+                builder = new AlertDialog.Builder(this);
+                builder.setTitle("Settings");
+                builder.setMessage("There are no settings to show, for now.");
+
+                // add a button
+                builder.setPositiveButton("OK", null);
+
+                // create and show the alert dialog
+                dialog = builder.create();
+                dialog.show();
                 return true;
             case R.id.help:
                 // setup the alert builder
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder = new AlertDialog.Builder(this);
                 builder.setTitle("Need help?");
                 builder.setMessage("This application is not finished and I am still updating it! " +
                         "If you want to know more visit my Github at https://github.com/PiotrDawidziuk :)");
@@ -46,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("OK", null);
 
                 // create and show the alert dialog
-                AlertDialog dialog = builder.create();
+                dialog = builder.create();
                 dialog.show();
                 return true;
             case R.id.floatWindow:
@@ -60,15 +72,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(homeIntent);
                 return true;
             case R.id.vimeo:
-                setUrlToWebview("https://vimeo.com/");
+                setUrlToWebView("https://vimeo.com/");
                 return true;
             case R.id.youtube:
-                setUrlToWebview("https://www.youtube.com/");
+                setUrlToWebView("https://www.youtube.com/");
                 return true;
 
             default:
                 return false;
-
         }
     }
 
@@ -83,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient());
 
-        webView.loadUrl("https://www.youtube.com/");
+        url = "https://www.youtube.com/";
+
+        webView.loadUrl(url);
     }
 
     @Override
